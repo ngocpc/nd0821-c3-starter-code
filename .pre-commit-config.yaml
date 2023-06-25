@@ -1,0 +1,21 @@
+repos:
+# general
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.3.0
+  hooks:
+    - id: check-added-large-files
+    - id: check-case-conflict
+    - id: check-executables-have-shebangs
+    - id: check-symlinks
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+
+# Docker
+- repo: https://github.com/AleksaC/hadolint-py
+  rev: v2.8.0
+  hooks:
+    - id: hadolint
+      args: [
+        --ignore, DL3008 # pinned package versions
+      ]

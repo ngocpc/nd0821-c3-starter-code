@@ -1,0 +1,36 @@
+name: environment
+channels:
+  - conda-forge
+dependencies:
+  - git = 2.40.0
+  - openssh = 9.3p1
+  - openssl = 3.1.0
+  - pip = 23.0.1
+  - pre-commit = 3.2.1
+  - python = 3.10.0
+  - shellcheck = 0.9.0
+  - tini = 0.19.0
+  - wget = 1.20.3
+  - pip:
+    - argparse == 1.4.0
+    - bio == 1.5.8
+    - datetime == 5.1
+    - ipykernel == 6.22.0
+    - ipython == 8.12.0
+    - matplotlib == 3.7.1
+    - pandas == 2.0.0
+    - scikit-learn == 1.2.2
+    - scipy == 1.10.1
+    - jupyter-contrib-nbextensions
+    - openpyxl
+    - seaborn
+    - xgboost
+    - scanpy
+    - fastapi
+    - requests
+    - uvicorn
+    - gunicorn
+    - pytest
+    - tqdm
+    - optuna
+    - natsort

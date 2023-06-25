@@ -1,0 +1,55 @@
+{
+    "name": "MLOps - Dev Container",
+
+    // "dockerFile": "Dockerfile", // comment out image name to build the Dev Container from Dockerfile
+    "image": "mlops",
+
+    "build": {
+        "args": {
+            "USER_GID": "1000",
+            "USER_UID": "1000",
+            "USERNAME": "vscode"
+        }
+    },
+
+    // Visual Studio Code extensions to be installed for the Dev Container
+    "extensions": [
+        "eamodio.gitlens",
+        "grapecity.gc-excelviewer",
+        "hediet.vscode-drawio",
+        "mechatroner.rainbow-csv",
+        "mutantdino.resourcemonitor",
+        "ms-python.python"
+    ],
+
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/.gitconfig,type=bind",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/tmp/.ssh,type=bind"
+      ],
+
+    "postCreateCommand": "bash -ci .devcontainer/devcontainer_post_create.sh",
+
+    "runArgs": [
+        "--rm"
+    ],
+
+    // Visual Studio Code IDE settings for the Dev Container
+    "settings": {
+        //"terminal.integrated.profiles.linux": "/bin/bash",
+        "git.autorefresh": true,
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+        "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+        "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+        "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+        "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+        "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+        "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+        "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+        "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+    },
+
+    "shutdownAction": "stopContainer" // set to none to keep container running
+}
