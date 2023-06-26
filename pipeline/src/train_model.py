@@ -43,8 +43,8 @@ X_test, y_test, _, _ = process_data(
 logging.info("Training model")
 model = train_model(X_train, y_train)
 
-# Scoring
-logging.info("Scoring on test set")
+# Evaluate model
+logging.info("Evaluating the model on the test set")
 y_pred = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
 logging.info(f"Precision: {precision: .2f}. Recall: {recall: .2f}. Fbeta: {fbeta: .2f}")
