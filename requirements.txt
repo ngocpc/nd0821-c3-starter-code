@@ -4,3 +4,5 @@ pandas
 uvicorn
 gunicorn
 requests
+joblib
+pydantic
