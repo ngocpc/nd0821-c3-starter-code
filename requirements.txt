@@ -6,5 +6,5 @@ gunicorn
 requests
 joblib
 pydantic
-scikit-learn
+scikit-learn==1.2.2
 httpx
