@@ -7,3 +7,4 @@ requests
 joblib
 pydantic
 scikit-learn
+httpx
