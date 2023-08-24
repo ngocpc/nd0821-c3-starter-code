@@ -1,8 +1,12 @@
 from pipeline.main import app
 from fastapi.testclient import TestClient
 
+import logging
+logger = logging.getLogger(__name__)
+
 client = TestClient(app)
-print(f"client: {client}")
+
+logger.info(f"client: {client}")
 
 def test_get():
     response = client.get('/')
@@ -29,6 +33,7 @@ def test_local_api_predict():
     }
 
     response = client.post('/predict', json=sample)
+    logger.info(f'response: {response}')
 
     assert response.status_code == 200
     assert response.json()['prediction'] == '<=50K'
