@@ -1,1 +1,2 @@
 pytest
+fastapi==0.63.0
