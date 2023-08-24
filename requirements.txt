@@ -6,3 +6,4 @@ gunicorn
 requests
 joblib
 pydantic
+sklearn
