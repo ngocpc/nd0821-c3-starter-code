@@ -55,8 +55,5 @@ def model_performance():
                 for row in model_metrics:
                     file.write(row + '\n')
 
-    logging.info("Performance metrics for slices saved to slice_output.txt")
-
-
 if __name__ == '__main__':
     model_performance()
