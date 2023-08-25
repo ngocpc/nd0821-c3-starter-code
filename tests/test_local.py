@@ -13,7 +13,7 @@ def test_get():
     assert response.status_code == 200
     assert response.json() == {'greeting': 'Hello World!'}
 
-def test_local_api_predict():
+def test_local_api_predict_less_than_50k():
 
     sample = {
         'age': 45,
@@ -37,3 +37,29 @@ def test_local_api_predict():
 
     assert response.status_code == 200
     assert response.json()['prediction'] == '<=50K'
+
+
+def test_local_api_predict_more_than_50k():
+
+    sample = {
+        'age': 42,
+        'workclass': "Private",
+        'fnlgt': 159449,
+        'education': 'Bachelors',
+        'education_num': 13,
+        'marital_status': 'Married-civ-spouse',
+        'occupation': 'Exec-managerial',
+        'relationship': "Husband",
+        'race': 'White',
+        'sex': 'Male',
+        'capital_gain': 5178,
+        'capital_loss': 0,
+        'hours_per_week': 40,
+        'native_country': 'United-States'
+    }
+
+    response = client.post('/predict', json=sample)
+    logger.info(f'response: {response}')
+
+    assert response.status_code == 200
+    assert response.json()['prediction'] == '>50K'

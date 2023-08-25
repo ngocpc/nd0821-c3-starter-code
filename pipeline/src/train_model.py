@@ -15,7 +15,6 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logging.info("Importing data")
 
 # Load in the data.
-print(os.getcwd())
 data_path = Path('data/census.csv')
 data = pd.read_csv(data_path)
 
