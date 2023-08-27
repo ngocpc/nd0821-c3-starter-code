@@ -21,7 +21,7 @@ sample = {
 }
 
 
-render_url = "https://ml-model-deployment-lzxm.onrender.com"
+render_url = "https://ml-model-deployment-lzxm.onrender.com/predict"
 
 request = requests.post(render_url, json=sample)
 assert request.status_code == 200
