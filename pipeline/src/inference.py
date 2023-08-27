@@ -6,7 +6,6 @@ import os
 import logging
 import pandas as pd
 import joblib
-from sklearn.model_selection import train_test_split
 from ml.model import compute_model_metrics
 from ml.data import (
     process_data,
@@ -17,14 +16,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-data_path = 'data/census.csv'
+test_data_path = 'data/test.csv'
 model_path = 'pipeline/model'
 
 def model_performance():
     """ output model performance on categorical features """
 
-    data = pd.read_csv(data_path)
-    _, test = train_test_split(data, test_size=0.20)
+    test = pd.read_csv(test_data_path, sep="\t")
 
     model = joblib.load(os.path.join(model_path, 'model.pkl'))
     encoder = joblib.load(os.path.join(model_path, 'encoder.pkl'))
@@ -35,10 +33,12 @@ def model_performance():
 
     for cat_feature in categorical_features:
         for cls in test[cat_feature].unique():
-            df_sub = test[test[cat_feature] == cls]
+            df_test = test[test[cat_feature] == cls]
+            if df_test.empty:
+                continue
 
             X_test, y_test, _, _ = process_data(
-                df_sub,
+                df_test,
                 categorical_features,
                 label='salary',
                 encoder=encoder,
@@ -51,9 +51,9 @@ def model_performance():
             row = f'{cat_feature} - {cls} :: Precision: {precision: .2f}. Recall: {recall: .2f}. Fbeta: {fbeta: .2f}'
             model_metrics.append(row)
 
-            with open('pipeline/results/model_metrics.txt', 'w') as file:
-                for row in model_metrics:
-                    file.write(row + '\n')
+    with open('pipeline/results/model_metrics.txt', 'w') as file:
+        for row in model_metrics:
+            file.write(row + '\n')
 
 if __name__ == '__main__':
     model_performance()

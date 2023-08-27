@@ -21,6 +21,8 @@ data = pd.read_csv(data_path)
 logging.info("Splitting data")
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
+train.to_csv('data/train.csv', sep='\t', index=False)
+test.to_csv('data/test.csv', sep='\t', index=False)
 
 cat_features = get_cat_features()
 
